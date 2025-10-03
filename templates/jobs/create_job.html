@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Create Job</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    {{ form.title }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    {{ form.description }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Requirements</label>
+    {{ form.requirements }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Location</label>
+    {{ form.location }}
+  </div>
+  <div class="mb-3 row">
+    <div class="col">
+      <label class="form-label">Salary Min</label>
+      {{ form.salary_min }}
+    </div>
+    <div class="col">
+      <label class="form-label">Salary Max</label>
+      {{ form.salary_max }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Job Type</label>
+    {{ form.job_type }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Expiry Date</label>
+    {{ form.expiry_date }}
+  </div>
+  <button class="btn btn-primary" type="submit">Post Job</button>
+</form>
+{% endblock %}

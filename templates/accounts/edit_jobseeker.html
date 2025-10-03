@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Edit Profile</h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="mb-3">
+    <label class="form-label">Full name</label>
+    {{ form.full_name }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+    {{ form.phone }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Location</label>
+    {{ form.location }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">About</label>
+    {{ form.about }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Experience (years)</label>
+    {{ form.experience_years }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Skills (comma separated)</label>
+    {{ form.skills }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Resume (PDF only)</label>
+    {{ form.resume }}
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}

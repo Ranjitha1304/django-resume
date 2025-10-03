@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Employer Dashboard</h3>
+<div class="mb-3">
+  <a class="btn btn-success" href="{% url 'create_job' %}">Create Job</a>
+  <a class="btn btn-secondary" href="{% url 'employer_jobs' %}">My Jobs</a>
+  <a class="btn btn-outline-primary" href="{% url 'edit_profile' %}">Edit Profile</a>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5>{{ profile.company_name }}</h5>
+    <p>{{ profile.description|default:"No description yet." }}</p>
+  </div>
+</div>
+{% endblock %}

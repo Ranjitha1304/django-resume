@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Jobseeker Dashboard</h3>
+<div class="mb-3">
+  <a class="btn btn-outline-primary" href="{% url 'edit_profile' %}">Edit Profile / Upload Resume</a>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5>{{ profile.full_name }}</h5>
+    <p>{{ profile.about|default:"No bio yet." }}</p>
+    <p><strong>Skills:</strong> {{ profile.skills }}</p>
+    <p>
+      {% if profile.resume %}
+        <a href="{{ profile.resume.url }}" class="btn btn-sm btn-secondary" target="_blank">Download Resume (PDF)</a>
+      {% else %}
+        <span class="text-muted">No resume uploaded.</span>
+      {% endif %}
+    </p>
+  </div>
+</div>
+{% endblock %}

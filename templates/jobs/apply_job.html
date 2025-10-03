@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Apply: {{ job.title }}</h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="mb-3">
+    <label class="form-label">Resume (PDF only) - optional (if blank, profile resume will be used)</label>
+    {{ form.resume }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Cover Letter</label>
+    {{ form.cover_letter }}
+  </div>
+  <button class="btn btn-primary" type="submit">Submit Application</button>
+</form>
+{% endblock %}

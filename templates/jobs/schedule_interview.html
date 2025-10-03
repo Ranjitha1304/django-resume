@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Schedule Interview for {{ application.jobseeker.full_name }}</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="mb-3">
+    <label class="form-label">Date & Time</label>
+    {{ form.scheduled_at }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Duration (minutes)</label>
+    {{ form.duration_minutes }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Mode (e.g., Online / On-site)</label>
+    {{ form.mode }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Meeting Link (if online)</label>
+    {{ form.meeting_link }}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Notes</label>
+    {{ form.notes }}
+  </div>
+  <button class="btn btn-primary" type="submit">Schedule</button>
+</form>
+{% endblock %}

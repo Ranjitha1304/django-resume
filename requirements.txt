@@ -1,0 +1,7 @@
+Django
+mysqlclient
+Pillow
+django-crispy-forms
+django-filter
+django-bootstrap4
+gunicorn

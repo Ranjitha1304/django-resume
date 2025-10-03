@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>My Jobs</h3>
+<div class="mb-3">
+  <a class="btn btn-success" href="{% url 'create_job' %}">Create Job</a>
+</div>
+<table class="table">
+  <thead>
+    <tr><th>Title</th><th>Applicants</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for job in jobs %}
+      <tr>
+        <td><a href="{% url 'job_detail' slug=job.slug %}">{{ job.title }}</a></td>
+        <td>{{ job.application_set.count }}</td>
+        <td>
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'applicants_list' job.id %}">View Applicants</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">No jobs posted yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

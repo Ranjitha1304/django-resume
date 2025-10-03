@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h3>Register</h3>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input class="form-control" name="username" value="{{ form.username.value|default:'' }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" name="email" type="email" value="{{ form.email.value|default:'' }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input class="form-control" name="password1" type="password">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input class="form-control" name="password2" type="password">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Role</label><br>
+        {% for val, label in form.role.field.choices %}
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="role" value="{{ val }}" {% if forloop.first %}{% if not request.POST.role or request.POST.role == val %}checked{% endif %}{% endif %}>
+            <label class="form-check-label">{{ label }}</label>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Applicants for: {{ job.title }}</h3>
+<table class="table">
+  <thead>
+    <tr><th>Applicant</th><th>Applied At</th><th>Status</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for app in applicants %}
+      <tr>
+        <td>{{ app.jobseeker.full_name }} <br> <small>{{ app.jobseeker.user.email }}</small></td>
+        <td>{{ app.applied_at }}</td>
+        <td><span class="badge bg-info">{{ app.get_status_display }}</span></td>
+        <td>
+          {% if app.resume %}
+            <a class="btn btn-sm btn-outline-secondary" href="{{ app.resume.url }}" target="_blank">Resume</a>
+          {% elif app.jobseeker.resume %}
+            <a class="btn btn-sm btn-outline-secondary" href="{{ app.jobseeker.resume.url }}" target="_blank">Resume</a>
+          {% endif %}
+          <a class="btn btn-sm btn-success" href="{% url 'shortlist_applicant' app.id %}">Shortlist</a>
+          <a class="btn btn-sm btn-primary" href="{% url 'schedule_interview' app.id %}">Schedule Interview</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No applicants yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

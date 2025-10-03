@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h3>{{ job.title }}</h3>
+    <p class="text-muted">{{ job.employer.company_name }} • {{ job.location }}</p>
+    <hr>
+    <h5>Description</h5>
+    <p>{{ job.description|linebreaks }}</p>
+    <h5>Requirements</h5>
+    <p>{{ job.requirements|linebreaks }}</p>
+    {% if user.is_authenticated and user.is_jobseeker %}
+      {% if applied %}
+        <button class="btn btn-secondary" disabled>Already Applied</button>
+      {% else %}
+        <a href="{% url 'apply_job' job.id %}" class="btn btn-success">Apply</a>
+      {% endif %}
+    {% else %}
+      <a href="{% url 'login' %}?next={% url 'job_detail' slug=job.slug %}" class="btn btn-primary">Login to Apply</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
